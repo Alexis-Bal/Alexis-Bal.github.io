@@ -244,34 +244,51 @@ layout: default
 // This function now runs when the page is loaded
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 1. Find the theme's subtitle <p> tag in the sidebar
-    // The 'header' is the sidebar in this theme
+    // 1. Find the sidebar (the <header> element in this theme)
+    var sidebarHeader = document.querySelector('header');
+    
+    // ADD PROFILE PICTURE
+    if (sidebarHeader) {
+        // Create the image element
+        var profileImg = document.createElement('img');
+        
+        // Set the image source. 
+        // IMPORTANT: Change 'profile.jpg' to your exact file name.
+        profileImg.src = '/images/profile.jpg'; // This relative path is best
+        profileImg.alt = 'Alexis Balestra'; // Alt text for accessibility
+        
+        // Set the style to make it look good (circular, centered)
+        profileImg.setAttribute('style', 
+            'width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;'
+        );
+        
+        // Add the image to the very top of the sidebar
+        sidebarHeader.prepend(profileImg);
+    }
+
+    // 2. Find the theme's subtitle <p> tag
     var sidebarSubtitle = document.querySelector('header p');
     
-    // 2. Check if we found it (we should, thanks to Step 1)
+    // 3. Inject the bilingual subtitles (this part is the same as before)
     if (sidebarSubtitle) {
         
-        // 3. Create the English subtitle element
+        // Create the English subtitle element
         var subEN = document.createElement('span');
         subEN.className = 'lang en';
         subEN.innerText = 'EURECOM STUDENT';
         
-        // 4. Create the French subtitle element
+        // Create the French subtitle element
         var subFR = document.createElement('span');
         subFR.className = 'lang fr';
         subFR.innerText = 'ÉTUDIANT À EURECOM';
         
-        // 5. Clear the placeholder space and add the new subtitles
+        // Clear the placeholder and add the new subtitles
         sidebarSubtitle.innerHTML = ''; // Clear the " "
         sidebarSubtitle.appendChild(subEN);
         sidebarSubtitle.appendChild(subFR);
-
-        // We don't need to add custom styles.
-        // The <span>s will automatically inherit the theme's nice 
-        // white, 300-weight font style from the <p> tag.
     }
     
-    // 6. Now, call the original function to set the language
+    // 4. Now, call the original function to set the language
     setInitialLang();
 });
 </script>

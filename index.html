@@ -286,11 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
         sidebarSubtitle.innerHTML = ''; // Clear the " "
         sidebarSubtitle.appendChild(subEN);
         sidebarSubtitle.appendChild(subFR);
-      // REMOVE THE GITHUB PROFILE LINK ---
-      var sidebarList = document.querySelector('header ul');
-      if (sidebarList) {
-          sidebarList.remove();
-      }
+
     }
     
     // 4. Now, call the original function to set the language

@@ -241,34 +241,34 @@ layout: default
     switchLang(preferredLang);
   }
 
-  // This function now runs when the page is loaded
+// This function now runs when the page is loaded
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 1. Find the sidebar header and title (using the theme's specific class)
-    var sidebarHeader = document.querySelector('.page-header');
-    var sidebarTitle = document.querySelector('.project-name'); // This is the theme's H1
+    // 1. Find the theme's subtitle <p> tag in the sidebar
+    // The 'header' is the sidebar in this theme
+    var sidebarSubtitle = document.querySelector('header p');
     
-    // 2. Check if we found the sidebar
-    if (sidebarHeader && sidebarTitle) {
+    // 2. Check if we found it (we should, thanks to Step 1)
+    if (sidebarSubtitle) {
         
-        // --- THIS IS THE FIX ---
-        // We use setAttribute('style', '...') instead of .style = '...'
-
         // 3. Create the English subtitle element
-        var subEN = document.createElement('h3');
-        subEN.className = 'lang en'; // Use the same class as your CV
+        var subEN = document.createElement('span');
+        subEN.className = 'lang en';
         subEN.innerText = 'EURECOM STUDENT';
-        subEN.setAttribute('style', 'color: #fff; margin-top: -10px; font-weight: 300; letter-spacing: 1px;');
         
         // 4. Create the French subtitle element
-        var subFR = document.createElement('h3');
-        subFR.className = 'lang fr'; // Use the same class
+        var subFR = document.createElement('span');
+        subFR.className = 'lang fr';
         subFR.innerText = 'ÉTUDIANT À EURECOM';
-        subFR.setAttribute('style', 'color: #fff; margin-top: -10px; font-weight: 300; letter-spacing: 1px;');
         
-        // 5. Add the new subtitles to the sidebar, right after the title
-        sidebarTitle.insertAdjacentElement('afterend', subFR);
-        sidebarTitle.insertAdjacentElement('afterend', subEN);
+        // 5. Clear the placeholder space and add the new subtitles
+        sidebarSubtitle.innerHTML = ''; // Clear the " "
+        sidebarSubtitle.appendChild(subEN);
+        sidebarSubtitle.appendChild(subFR);
+
+        // We don't need to add custom styles.
+        // The <span>s will automatically inherit the theme's nice 
+        // white, 300-weight font style from the <p> tag.
     }
     
     // 6. Now, call the original function to set the language

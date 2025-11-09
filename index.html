@@ -242,5 +242,34 @@ layout: default
   }
 
   // Call the function when the page loads
-  document.addEventListener('DOMContentLoaded', setInitialLang);
+  // This function now runs when the page is loaded
+document.addEventListener('DOMContentLoaded', function() {
+
+    // 1. Find the sidebar header and title
+    var sidebarHeader = document.querySelector('.page-header');
+    var sidebarTitle = document.querySelector('.page-header h1');
+
+    // 2. Check if we found the sidebar (we should!)
+    if (sidebarHeader && sidebarTitle) {
+
+        // 3. Create the English subtitle element
+        var subEN = document.createElement('h3');
+        subEN.className = 'lang en'; // Use the same class as your CV
+        subEN.innerText = 'EURECOM STUDENT';
+        subEN.style = 'color: #fff; margin-top: -10px; font-weight: 300;'; // Style it like the theme
+
+        // 4. Create the French subtitle element
+        var subFR = document.createElement('h3');
+        subFR.className = 'lang fr'; // Use the same class
+        subFR.innerText = 'ÉTUDIANT À EURECOM';
+        subFR.style = 'color: #fff; margin-top: -10px; font-weight: 300;'; // Style it
+
+        // 5. Add the new subtitles to the sidebar, right after the title
+        sidebarTitle.insertAdjacentElement('afterend', subFR);
+        sidebarTitle.insertAdjacentElement('afterend', subEN);
+    }
+
+    // 6. Now, call the original function to set the language
+    setInitialLang();
+});
 </script>

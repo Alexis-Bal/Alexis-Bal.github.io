@@ -2,12 +2,21 @@
 layout: default
 ---
 
-<div class="language-switcher">
-  <button onclick="switchLang('en')">English</button>
-  <button onclick="switchLang('fr')">Français</button>
+<link rel="stylesheet" href="{{ '/assets/css/portfolio.css' | relative_url }}">
+<script defer src="{{ '/assets/js/portfolio.js' | relative_url }}"></script>
+
+<div class="portfolio-backdrop" aria-hidden="true">
+  <span></span>
+  <span></span>
+  <span></span>
 </div>
 
-<hr>
+<div class="portfolio-shell">
+
+<div class="language-switcher" role="group" aria-label="Language selection" data-profile-src="{{ '/image/profile.jpg' | relative_url }}">
+  <button type="button" class="language-button" data-language="en" onclick="switchLang('en')" aria-pressed="false">English</button>
+  <button type="button" class="language-button" data-language="fr" onclick="switchLang('fr')" aria-pressed="false">Français</button>
+</div>
 
 <!-- ENGLISH SECTION -->
 <div class="lang en">
@@ -75,6 +84,7 @@ layout: default
     <ul>
         <li>2-month internship during the summer of 2025 at HAROPA PORT in Le Havre, in the GIS (Geographic Information Systems) department.</li>
         <li><a href="https://Alexis-Bal.github.io/pdf/rapport_de_stage_Alexis_Balestra_HAROPA_port.pdf">Internship Report</a></li>
+        <li class="swing3d-item"><a href="https://swing3d.haropaport.com/">S-WiNG 3D</a> — interactive 3D visualisation platform of the Port of Le Havre that I worked on during my internship, featuring vessel traffic, port infrastructure, weather, waves, and navigation information.</li>
     </ul>
     <p><strong>Speculative Decoding Project (2025)</strong></p>
     <ul>
@@ -194,6 +204,7 @@ layout: default
     <ul>
         <li>Stage de 2 mois pendant l'été 2025 dans l'entreprise HAROPA PORT au Havre, dans la section SIG (Systèmes d'Information Géographique).</li>
         <li><a href="https://Alexis-Bal.github.io/pdf/rapport_de_stage_Alexis_Balestra_HAROPA_port.pdf">Rapport de stage</a></li>
+        <li class="swing3d-item"><a href="https://swing3d.haropaport.com/">S-WiNG 3D</a> — plateforme interactive de visualisation 3D du port du Havre sur laquelle j’ai travaillé pendant mon stage, présentant le trafic des navires, les infrastructures portuaires, la météo, les vagues et les informations de navigation.</li>
     </ul>
     <p><strong>Projet Speculative Decoding (2025)</strong></p>
     <ul>
@@ -246,105 +257,4 @@ layout: default
         <li><a href="https://alexis-bal.github.io/pdf/cool_canette.pdf">Rapport de projet</a></li>
     </ul>
 </div>
-
-<style>
-    /* CSS pour les boutons et l'affichage conditionnel */
-    
-    /* 1. Cacher tout par défaut */
-    .lang {
-        display: none;
-    }
-    
-    /* 2. Afficher la langue active */
-    .lang.active {
-        display: block;
-    }
-
-    /* 3. Style pour vos boutons (pour qu'ils soient propres si le thème n'a pas de style par défaut) */
-    .language-switcher button {
-        border: 1px solid #ccc;
-        background-color: #f9f9f9;
-        padding: 5px 10px;
-        cursor: pointer;
-        margin-right: 5px;
-    }
-    .language-switcher button:hover {
-        background-color: #eee;
-    }
-</style>
-
-<script>
-    // Fonction de changement de langue
-    function switchLang(lang) {
-        var langElements = document.querySelectorAll('.lang');
-        langElements.forEach(function(el) {
-            el.style.display = 'none';
-        });
-
-        var selectedLangElements = document.querySelectorAll('.lang.' + lang);
-        selectedLangElements.forEach(function(el) {
-            el.style.display = 'block';
-        });
-
-        localStorage.setItem('preferredLang', lang);
-    }
-
-    // Fonction d'initialisation
-    function setInitialLang() {
-        var preferredLang = localStorage.getItem('preferredLang');
-        if (!preferredLang) {
-            preferredLang = 'en'; // Anglais par défaut
-        }
-        switchLang(preferredLang);
-    }
-
-    // Exécution au chargement
-    document.addEventListener('DOMContentLoaded', function() {
-        
-        // --- GESTION DE LA PHOTO ET DU SOUS-TITRE DANS LA SIDEBAR DU THÈME ---
-        
-        // 1. Essayer de trouver le header du thème (la sidebar)
-        var sidebarHeader = document.querySelector('header');
-        
-        // Si on le trouve, on injecte la photo et les sous-titres bilingues
-        if (sidebarHeader) {
-            // Création de l'image
-            var profileImg = document.createElement('img');
-            // IMPORTANT : Vérifiez que ce chemin est correct pour votre dossier GitHub
-            profileImg.src = '/image/profile.jpg'; 
-            profileImg.alt = 'Alexis Balestra';
-            
-            // Style de l'image
-            profileImg.setAttribute('style', 
-                'width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;'
-            );
-            
-            // Ajout de l'image tout en haut du header
-            sidebarHeader.prepend(profileImg);
-
-            // Gestion des sous-titres bilingues
-            // On cherche le paragraphe existant (souvent le sous-titre du thème)
-            var sidebarSubtitle = document.querySelector('header p');
-            
-            if (sidebarSubtitle) {
-                // Sous-titre EN
-                var subEN = document.createElement('span');
-                subEN.className = 'lang en';
-                subEN.innerText = 'EURECOM STUDENT';
-                
-                // Sous-titre FR
-                var subFR = document.createElement('span');
-                subFR.className = 'lang fr';
-                subFR.innerText = 'ÉTUDIANT À EURECOM';
-                
-                // On vide le contenu actuel et on met nos spans dynamiques
-                sidebarSubtitle.innerHTML = ''; 
-                sidebarSubtitle.appendChild(subEN);
-                sidebarSubtitle.appendChild(subFR);
-            }
-        }
-        
-        // 2. Lancer la langue initiale
-        setInitialLang();
-    });
-</script>
+</div>

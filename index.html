@@ -5,6 +5,50 @@ layout: default
 <link rel="stylesheet" href="{{ '/assets/css/portfolio.css' | relative_url }}">
 <script defer src="{{ '/assets/js/portfolio.js' | relative_url }}"></script>
 
+<style>
+.experience-item {
+  margin-bottom: 1.5rem;
+}
+
+.experience-item > p {
+  margin-bottom: 0.5rem;
+}
+
+.experience-details {
+  margin-top: 0.65rem;
+}
+
+.experience-details summary {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid currentColor;
+  border-radius: 0.45rem;
+  font-weight: 600;
+  user-select: none;
+}
+
+.experience-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.experience-details .open-label {
+  display: none;
+}
+
+.experience-details[open] .closed-label {
+  display: none;
+}
+
+.experience-details[open] .open-label {
+  display: inline;
+}
+
+.experience-details ul {
+  margin-top: 0.8rem;
+}
+</style>
+
 <div class="portfolio-backdrop" aria-hidden="true">
   <span></span>
   <span></span>
@@ -47,6 +91,47 @@ layout: default
         <li>SQL</li>
     </ul>
     <hr>
+    <h3>PROFESSIONAL EXPERIENCES</h3>
+
+    <div class="experience-item">
+        <p><strong>AI and Quality Intern | ALTEN (6 months – end-of-study internship – 2026)</strong></p>
+        <p>Worked on SMQ 2.0, a Generative AI initiative designed to transform and improve quality management processes.</p>
+        <details class="experience-details">
+            <summary>
+                <span class="closed-label">Read more</span>
+                <span class="open-label">Show less</span>
+            </summary>
+            <ul>
+                <li>Resumed work on the SMQ 2.0 project, leveraging Generative AI to transform and enhance quality management processes.</li>
+                <li>Collaborated within a team of four on various AI and quality-related topics and presented project progress and findings to other team members, strengthening my communication and leadership skills.</li>
+                <li>Deployed the SMQ 2.0 application to a virtual machine using Azure Pipelines and Docker, making the solution accessible to ALTEN employees.</li>
+                <li>Implemented a secure authentication system using the Microsoft Authentication Library (MSAL) to protect access to the SMQ 2.0 application.</li>
+            </ul>
+        </details>
+    </div>
+
+    <div class="experience-item">
+        <p><strong>Professional Discovery Internship | HAROPA PORT (2 months – Summer 2024)</strong></p>
+        <p>Worked in the GIS (Geographic Information Systems) department on Python automation, geospatial data, and 3D harbor-management applications.</p>
+        <details class="experience-details">
+            <summary>
+                <span class="closed-label">Read more</span>
+                <span class="open-label">Show less</span>
+            </summary>
+            <ul>
+                <li>Developed and optimized a core Python script to generate and post-process maritime shipping lines (Atlas LMR), significantly improving its stability, speed, and maintainability through robust error handling and logging systems.</li>
+                <li>Contributed to the flagship POC S-WiNG 3D project, a strategic modernization of the harbor's 2D management application into a 3D virtual environment for the harbor master's office.</li>
+                <li>Created a new 3D virtual scene by integrating complex geospatial datasets, including bridges, locks, and GIS data, and converted 76 unique 3D ship models from .blend to .gltf for the new application.</li>
+                <li>Analyzed and tested the GeoEvent server for real-time data stream processing, focusing on the live recalibration of ship positions at the quay.</li>
+                <li>Audited the application's codebase to propose concrete optimizations and completely rewrote outdated technical documentation for both technical and non-technical audiences.</li>
+                <li>Collaborated cross-functionally with the SAR department to define project requirements, aesthetics, and symbology for the maritime atlas.</li>
+                <li><a href="https://Alexis-Bal.github.io/pdf/rapport_de_stage_Alexis_Balestra_HAROPA_port.pdf">Internship Report</a></li>
+                <li class="swing3d-item"><a href="https://swing3d.haropaport.com/">S-WiNG 3D</a> — interactive 3D visualisation platform of the Port of Le Havre that I worked on during my internship, featuring vessel traffic, port infrastructure, weather, waves, and navigation information.</li>
+            </ul>
+        </details>
+    </div>
+    <hr>
+
     <h3>EDUCATION</h3>
     <p><strong>ERASMUS in Austria | Vienna University of Technology (TU Wien)</strong></p>
     <ul>
@@ -75,24 +160,11 @@ layout: default
     </ul>
     <hr>
 
-    <h3>PROJECTS AND EXPERIENCE</h3>
+    <h3>PROJECTS</h3>
   
-    <p><strong>AI and Quality Intern (6 months – end-of-study internship – 2026)</strong></p>
-    <ul>
-        <li><em>ALTEN</em></li>
-        <li>Took over the SMQ2.0 project using generative AI to transform and improve quality processes.</li>
-        <li>Worked in a team of 4 on the different AI and quality topics. Presented the topics to the other members of the group.</li>
-    </ul>
-    
     <p><strong>Smart Academic Assistant Project (2025-2026)</strong></p>
     <ul>
         <li>Project carried out in a team of 5 for the generative AI course of the Technical University of Vienna, consisting of creating an academic assistant to help students.</li>
-    </ul>
-    <p><strong>Professional Discovery Internship (2024)</strong></p>
-    <ul>
-        <li>2-month internship during the summer of 2024 at HAROPA PORT in Le Havre, in the GIS (Geographic Information Systems) department.</li>
-        <li><a href="https://Alexis-Bal.github.io/pdf/rapport_de_stage_Alexis_Balestra_HAROPA_port.pdf">Internship Report</a></li>
-        <li class="swing3d-item"><a href="https://swing3d.haropaport.com/">S-WiNG 3D</a> — interactive 3D visualisation platform of the Port of Le Havre that I worked on during my internship, featuring vessel traffic, port infrastructure, weather, waves, and navigation information.</li>
     </ul>
     <p><strong>Simplified Database Engine in Java (2025)</strong></p>
     <ul>
@@ -180,6 +252,47 @@ layout: default
         <li>SQL</li>
     </ul>
     <hr>
+    <h3>EXPÉRIENCES PROFESSIONNELLES</h3>
+
+    <div class="experience-item">
+        <p><strong>Stagiaire IA et Qualité | ALTEN (6 mois – stage de fin d’études – 2026)</strong></p>
+        <p>Travail sur SMQ 2.0, une initiative utilisant l’IA générative pour transformer et améliorer les processus de management de la qualité.</p>
+        <details class="experience-details">
+            <summary>
+                <span class="closed-label">En savoir plus</span>
+                <span class="open-label">Réduire</span>
+            </summary>
+            <ul>
+                <li>Reprise du projet SMQ 2.0, utilisant l’IA générative pour transformer et améliorer les processus de management de la qualité.</li>
+                <li>Collaboration au sein d’une équipe de quatre personnes sur différents sujets liés à l’IA et à la qualité, avec présentation de l’avancement et des résultats aux autres membres de l’équipe, renforçant mes compétences en communication et en leadership.</li>
+                <li>Déploiement de l’application SMQ 2.0 sur une machine virtuelle à l’aide d’Azure Pipelines et de Docker, afin de rendre la solution accessible aux collaborateurs d’ALTEN.</li>
+                <li>Mise en place d’un système d’authentification sécurisé avec la Microsoft Authentication Library (MSAL) pour protéger l’accès à l’application SMQ 2.0.</li>
+            </ul>
+        </details>
+    </div>
+
+    <div class="experience-item">
+        <p><strong>Stage de découverte du monde professionnel | HAROPA PORT (2 mois – été 2024)</strong></p>
+        <p>Travail au sein du service SIG (Systèmes d’Information Géographique) sur l’automatisation Python, les données géospatiales et des applications 3D de gestion portuaire.</p>
+        <details class="experience-details">
+            <summary>
+                <span class="closed-label">En savoir plus</span>
+                <span class="open-label">Réduire</span>
+            </summary>
+            <ul>
+                <li>Développement et optimisation d’un script Python central permettant de générer et de post-traiter les lignes maritimes (Atlas LMR), avec une amélioration significative de sa stabilité, de sa rapidité et de sa maintenabilité grâce à la mise en place d’une gestion robuste des erreurs et d’un système de logs.</li>
+                <li>Contribution au projet POC phare S-WiNG 3D, visant à moderniser l’application 2D de gestion du port en un environnement virtuel 3D destiné à la capitainerie.</li>
+                <li>Création d’une nouvelle scène virtuelle 3D par l’intégration de jeux de données géospatiales complexes, notamment des ponts, écluses et données SIG, ainsi que conversion de 76 modèles 3D de navires uniques du format .blend vers .gltf pour la nouvelle application.</li>
+                <li>Analyse et test du serveur GeoEvent pour le traitement de flux de données en temps réel, avec un focus sur le recalage en direct de la position des navires à quai.</li>
+                <li>Audit du code de l’application afin de proposer des optimisations concrètes, ainsi que réécriture complète d’une documentation technique devenue obsolète pour des publics techniques et non techniques.</li>
+                <li>Collaboration transverse avec le service SAR afin de définir les besoins du projet, l’esthétique et la symbologie de l’atlas maritime.</li>
+                <li><a href="https://Alexis-Bal.github.io/pdf/rapport_de_stage_Alexis_Balestra_HAROPA_port.pdf">Rapport de stage</a></li>
+                <li class="swing3d-item"><a href="https://swing3d.haropaport.com/">S-WiNG 3D</a> — plateforme interactive de visualisation 3D du port du Havre sur laquelle j’ai travaillé pendant mon stage, présentant le trafic des navires, les infrastructures portuaires, la météo, les vagues et les informations de navigation.</li>
+            </ul>
+        </details>
+    </div>
+    <hr>
+
     <h3>ÉDUCATION</h3>
     <p><strong>ERASMUS en Autriche | Université Technique de Vienne</strong></p>
     <ul>
@@ -208,24 +321,11 @@ layout: default
     </ul>
     <hr>
 
-    <h3>PROJETS ET EXPÉRIENCES</h3>
+    <h3>PROJETS</h3>
 
-    <p><strong>Stagiaire sur le stage IA et qualité (6 mois – stage de fin d’études – 2026)</strong></p>
-    <ul>
-        <li><em>ALTEN</em></li>
-        <li>Reprise du sujet SMQ2.0 utilisant l’IA générative pour transformer et améliorer des processus qualités.</li>
-        <li>Travail en équipe de 4 sur les différents sujets IA et qualité. Présentation des sujets aux autres membres du groupe.</li>
-    </ul>
-    
     <p><strong>Projet Smart Academic Assistant (2025-2026)</strong></p>
     <ul>
         <li>Projet réalisé en équipe de 5 pour le cours d'IA générative de l'Université technique de Vienne, consistant à créer un assistant académique pour aider les étudiants.</li>
-    </ul>
-    <p><strong>Stage de découverte du monde professionnel (2024)</strong></p>
-    <ul>
-        <li>Stage de 2 mois pendant l'été 2024 dans l'entreprise HAROPA PORT au Havre, dans la section SIG (Systèmes d'Information Géographique).</li>
-        <li><a href="https://Alexis-Bal.github.io/pdf/rapport_de_stage_Alexis_Balestra_HAROPA_port.pdf">Rapport de stage</a></li>
-        <li class="swing3d-item"><a href="https://swing3d.haropaport.com/">S-WiNG 3D</a> — plateforme interactive de visualisation 3D du port du Havre sur laquelle j’ai travaillé pendant mon stage, présentant le trafic des navires, les infrastructures portuaires, la météo, les vagues et les informations de navigation.</li>
     </ul>
     <p><strong>Implémentation d’un moteur de base de données simplifié en Java (2025)</strong></p>
     <ul>

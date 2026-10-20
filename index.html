@@ -1,386 +1,364 @@
 ---
 layout: default
+title: Alexis Balestra | AI, Machine Learning & Python
+description: Portfolio d'Alexis Balestra — ingénierie IA, machine learning, Python et déploiement de solutions d'IA générative.
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/portfolio.css' | relative_url }}">
 <script defer src="{{ '/assets/js/portfolio.js' | relative_url }}"></script>
 
+<!-- Mise en page complémentaire, volontairement autonome : aucun autre fichier CSS à modifier. -->
 <style>
-.experience-item {
-  margin-bottom: 1.5rem;
-}
-
-.experience-item > p {
-  margin-bottom: 0.5rem;
-}
-
-.experience-details {
-  margin-top: 0.65rem;
-}
-
-.experience-details summary {
-  display: inline-block;
-  cursor: pointer;
-  padding: 0.45rem 0.8rem;
-  border: 1px solid currentColor;
-  border-radius: 0.45rem;
-  font-weight: 600;
-  user-select: none;
-}
-
-.experience-details summary::-webkit-details-marker {
-  display: none;
-}
-
-.experience-details .open-label {
-  display: none;
-}
-
-.experience-details[open] .closed-label {
-  display: none;
-}
-
-.experience-details[open] .open-label {
-  display: inline;
-}
-
-.experience-details ul {
-  margin-top: 0.8rem;
-}
+  .portfolio-shell .pf-hero {
+    padding: clamp(27px, 5vw, 48px);
+    border-radius: 25px;
+    margin-bottom: 22px;
+    color: #fff;
+    background: radial-gradient(circle at 94% 7%, rgba(61,206,210,.24), transparent 38%), linear-gradient(135deg, #11263f 0%, #153b50 65%, #096875 100%);
+    box-shadow: 0 22px 54px rgba(17,38,63,.18);
+    position: relative;
+    overflow: hidden;
+  }
+  .portfolio-shell .pf-eyebrow {
+    display: inline-block;
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    font-weight: 800;
+    color: #97e9e8;
+    margin-bottom: 13px;
+  }
+  .portfolio-shell .pf-hero h1 { color: #fff; font-size: clamp(1.65rem, 3.5vw, 2.4rem); line-height: 1.15; letter-spacing: -.035em; margin: 0 0 15px; font-weight: 850; }
+  .portfolio-shell .pf-hero p { max-width: 65ch; font-size: 1rem; line-height: 1.7; color: #e0eef4; margin: 0 0 17px; }
+  .portfolio-shell .pf-hero strong { color: #fff; }
+  .portfolio-shell .pf-hero .pf-small { font-size: .88rem; color: #cfdee9; margin-top: 18px; margin-bottom: 0; }
+  .portfolio-shell .pf-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 22px; }
+  .portfolio-shell .pf-chip { display: inline-block; padding: 6px 11px; background: rgba(255,255,255,.12); border: 1px solid rgba(218,254,255,.24); color: #edfafe; border-radius: 99px; font-size: .78rem; font-weight: 700; }
+  .portfolio-shell .pf-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .portfolio-shell .pf-hero a.pf-button { text-decoration: none; padding: 11px 17px; display: inline-flex; align-items: center; justify-content: center; min-height: 22px; border-radius: 11px; font-size: .86rem; font-weight: 800; transition: transform .15s ease, background .15s ease; }
+  .portfolio-shell .pf-hero a.pf-button:hover { transform: translateY(-2px); }
+  .portfolio-shell .pf-button--primary { background: #fff; color: #104451; }
+  .portfolio-shell .pf-button--outline { border: 1px solid rgba(255,255,255,.45); color: #fff; background: rgba(255,255,255,.09); }
+  .portfolio-shell .pf-section-note { margin: -12px 0 20px; color: var(--portfolio-muted, #5f6f82); font-size: .91rem; }
+  .portfolio-shell .pf-feature, .portfolio-shell .pf-project, .portfolio-shell .pf-minicard {
+    border: 1px solid var(--portfolio-border, rgba(16,34,59,.12));
+    border-radius: 18px;
+    background: rgba(248,252,254,.86);
+    padding: 20px;
+    min-width: 0;
+  }
+  .portfolio-shell .pf-feature + .pf-feature { margin-top: 14px; }
+  .portfolio-shell .pf-heading-row { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; column-gap: 14px; row-gap: 5px; }
+  .portfolio-shell .pf-heading-row h4, .portfolio-shell .pf-project h4 { margin: 0 0 8px; font-size: 1.1rem; color: var(--portfolio-ink, #10223b); line-height: 1.35; }
+  .portfolio-shell .pf-heading-row .pf-when { color: var(--portfolio-muted, #5f6f82); font-size: .83rem; white-space: nowrap; }
+  .portfolio-shell .pf-feature p, .portfolio-shell .pf-project p { margin: 0 0 10px; line-height: 1.64; }
+  .portfolio-shell .pf-feature ul, .portfolio-shell .pf-project ul { margin-top: 8px; margin-bottom: 10px; }
+  .portfolio-shell .pf-tech { color: #225568; font-size: .8rem; font-weight: 700; margin: 8px 0 10px; }
+  .portfolio-shell .pf-project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .portfolio-shell .pf-project { display: flex; flex-direction: column; }
+  .portfolio-shell .pf-project--wide { grid-column: 1 / -1; }
+  .portfolio-shell .pf-project .pf-project-links { margin-top: auto; padding-top: 9px; display: flex; flex-wrap: wrap; gap: 13px; font-size: .9rem; }
+  .portfolio-shell .pf-project-links a { text-decoration: underline; }
+  .portfolio-shell .pf-tag { display: inline-block; width: max-content; max-width: 100%; padding: 4px 9px; background: #e6f5f5; color: #075f6a; border-radius: 7px; font-size: .73rem; font-weight: 800; margin-bottom: 9px; }
+  .portfolio-shell .pf-skills-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+  .portfolio-shell .pf-minicard h4 { font-size: .91rem; margin: 0 0 8px; color: var(--portfolio-ink, #10223b); }
+  .portfolio-shell .pf-minicard p { margin: 0; font-size: .92rem; line-height: 1.55; }
+  .portfolio-shell .pf-education-item { margin: 0 0 16px; padding: 0 0 16px; border-bottom: 1px solid var(--portfolio-border, #ddd); }
+  .portfolio-shell .pf-education-item:last-child { margin: 0; padding: 0; border: 0; }
+  .portfolio-shell .pf-education-item h4 { font-size: 1.02rem; margin: 0 0 5px; }
+  .portfolio-shell .pf-education-item p { margin: 0 0 5px; }
+  .portfolio-shell .pf-collapsible { margin-top: 12px; }
+  .portfolio-shell .pf-collapsible > summary { display: inline-flex; cursor: pointer; font-weight: 800; color: var(--portfolio-accent-strong, #075f6a); padding: 8px 0; }
+  .portfolio-shell .pf-collapsible[open] > summary { margin-bottom: 8px; }
+  .portfolio-shell .pf-collapsible > ul { margin: 0 0 5px; }
+  .portfolio-shell .pf-collapsible li { padding-bottom: 4px; }
+  .portfolio-shell .pf-contact-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+  .portfolio-shell .pf-contact-grid a { overflow-wrap: anywhere; }
+  .portfolio-shell .pf-contact-item { border: 1px solid var(--portfolio-border, #ddd); background: rgba(247,251,253,.86); border-radius: 13px; padding: 13px 15px; }
+  .portfolio-shell .pf-contact-item small { display: block; font-size: .74rem; color: var(--portfolio-muted, #5f6f82); margin-bottom: 4px; font-weight: 700; }
+  .portfolio-shell .pf-disclaimer { color: var(--portfolio-muted, #5f6f82); font-size: .85rem; }
+  .portfolio-shell .pf-compact-list { margin-top: 2px; }
+  .portfolio-shell .pf-compact-list li { margin-bottom: 9px; }
+  @media (max-width: 700px) {
+    .portfolio-shell .pf-project-grid, .portfolio-shell .pf-skills-grid, .portfolio-shell .pf-contact-grid { grid-template-columns: 1fr; }
+    .portfolio-shell .pf-heading-row { display: block; }
+    .portfolio-shell .pf-hero { padding: 25px 22px; }
+    .portfolio-shell .pf-hero a.pf-button { width: 100%; box-sizing: border-box; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .portfolio-shell .pf-hero a.pf-button { transition: none; }
+  }
 </style>
 
-<div class="portfolio-backdrop" aria-hidden="true">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
-
+<div class="portfolio-backdrop" aria-hidden="true"><span></span><span></span><span></span></div>
 <div class="portfolio-shell">
+  <div class="language-switcher" role="group" aria-label="Language selection" data-profile-src="{{ '/image/profile.jpg' | relative_url }}">
+    <button type="button" class="language-button" data-language="fr" onclick="switchLang('fr')" aria-pressed="false">Français</button>
+    <button type="button" class="language-button" data-language="en" onclick="switchLang('en')" aria-pressed="false">English</button>
+  </div>
 
-<div class="language-switcher" role="group" aria-label="Language selection" data-profile-src="{{ '/image/profile.jpg' | relative_url }}">
-  <button type="button" class="language-button" data-language="en" onclick="switchLang('en')" aria-pressed="false">English</button>
-  <button type="button" class="language-button" data-language="fr" onclick="switchLang('fr')" aria-pressed="false">Français</button>
-</div>
-
-<!-- ENGLISH SECTION -->
-<div class="lang en">
-    <h3>CONTACT INFORMATION</h3>
-    <ul>
-        <li><strong>Phone:</strong> +33 6 41 47 94 65</li>
-        <li><strong>Email:</strong> alexis.balestra@eurecom.fr</li>
-        <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/alexis-balestra-70a957295/">https://www.linkedin.com/in/alexis-balestra-70a957295/</a></li>
-        <li><strong>GitHub:</strong> <a href="https://github.com/Alexis-Bal">https://github.com/Alexis-Bal</a></li>
-    </ul>
-    <hr>
-    <h3>PROFILE</h3>
-    <p>After two years of preparatory classes at Lycée Louis Pasteur in the MPSI and MP tracks, I completed my studies at EURECOM toward a <strong>Master of Science (MSc) in Engineering</strong>, specialising in Computer Science, Data Science and AI. I have completed all academic and internship requirements for my degree, including my six-month end-of-study internship at ALTEN in Toulouse; the official diploma is currently pending issuance. I also completed an Erasmus semester at TU Wien in Austria.</p>
-    <hr>
-    <h3>OBJECTIVE</h3>
-    <p>I am currently seeking <strong>my first full-time position</strong> where I can apply my background in computer science and artificial intelligence</p>
-    <hr>
-
-    <h3>SKILLS</h3>
-    <p><strong>Languages</strong></p>
-    <ul>
-        <li><strong>English:</strong> Fluent C1 level (European English section, Cambridge English Certificate, 950 TOEIC score)</li>
-        <li><strong>German:</strong> A2 level</li>
-    </ul>
-    <p><strong>Programming Languages</strong></p>
-    <ul>
-        <li>Python</li>
-        <li>SQL</li>
-    </ul>
-    <hr>
-    <h3>PROFESSIONAL EXPERIENCES</h3>
-
-    <div class="experience-item">
-        <p><strong>AI and Quality Intern | ALTEN (6 months – end-of-study internship – 2026)</strong></p>
-        <p>Worked on SMQ 2.0, a Generative AI initiative designed to transform and improve quality management processes.</p>
-        <details class="experience-details">
-            <summary>
-                <span class="closed-label">Read more</span>
-                <span class="open-label">Show less</span>
-            </summary>
-            <ul>
-                <li>Resumed work on the SMQ 2.0 project, leveraging Generative AI to transform and enhance quality management processes.</li>
-                <li>Collaborated within a team of four on various AI and quality-related topics and presented project progress and findings to other team members, strengthening my communication and leadership skills.</li>
-                <li>Deployed the SMQ 2.0 application to a virtual machine using Azure Pipelines and Docker, making the solution accessible to ALTEN employees.</li>
-                <li>Implemented a secure authentication system using the Microsoft Authentication Library (MSAL) to protect access to the SMQ 2.0 application.</li>
-            </ul>
-        </details>
+  <!-- Sections HTML explicites : data-portfolio-enhanced évite le regroupement automatique du JS historique. -->
+  <div class="lang fr" lang="fr" data-portfolio-enhanced="true">
+    <div class="pf-hero" id="accueil-fr">
+      <span class="pf-eyebrow">IA appliquée · Machine Learning · Développement Python</span>
+      <h1>Concevoir des modèles, développer des applications IA, les déployer.</h1>
+      <p>Je suis <strong>Alexis Balestra</strong>, issu du cursus ingénieur d'EURECOM spécialisé en Data Science. J'ai travaillé chez <strong>ALTEN</strong> sur le déploiement et la sécurisation d'une application d'IA générative, et réalisé des projets en NLP, LLM et machine learning.</p>
+      <div class="pf-chips" aria-label="Domaines de compétences">
+        <span class="pf-chip">Python</span><span class="pf-chip">Machine Learning</span><span class="pf-chip">LLM / NLP</span><span class="pf-chip">Docker &amp; Azure Pipelines</span>
+      </div>
+      <div class="pf-actions">
+        <a class="pf-button pf-button--primary" href="mailto:alexis.balestra@eurecom.fr?subject=Opportunit%C3%A9%20en%20IA%20-%20Alexis%20Balestra">Me contacter ↗</a>
+        <a class="pf-button pf-button--outline" href="{{ '/pdf/Alexis_Balestra_CV_AI_ML_Engineer.pdf' | relative_url }}">CV IA / ML (PDF) ↓</a>
+        <a class="pf-button pf-button--outline" href="{{ '/pdf/Alexis_Balestra_CV_Python_Data_AI_Engineer.pdf' | relative_url }}">CV Python / Data (PDF) ↓</a>
+      </div>
+      <p class="pf-small">Premier CDI recherché en ingénierie IA / ML, développement Python ou Data &amp; IA · Mobilité France entière · Cursus et stage validés en 2026, diplôme officiel en attente de délivrance.</p>
     </div>
 
-    <div class="experience-item">
-        <p><strong>Professional Discovery Internship | HAROPA PORT (2 months – Summer 2024)</strong></p>
-        <p>Worked in the GIS (Geographic Information Systems) department on Python automation, geospatial data, and 3D harbor-management applications.</p>
-        <details class="experience-details">
-            <summary>
-                <span class="closed-label">Read more</span>
-                <span class="open-label">Show less</span>
-            </summary>
-            <ul>
-                <li>Developed and optimized a core Python script to generate and post-process maritime shipping lines (Atlas LMR), significantly improving its stability, speed, and maintainability through robust error handling and logging systems.</li>
-                <li>Contributed to the flagship POC S-WiNG 3D project, a strategic modernization of the harbor's 2D management application into a 3D virtual environment for the harbor master's office.</li>
-                <li>Created a new 3D virtual scene by integrating complex geospatial datasets, including bridges, locks, and GIS data, and converted 76 unique 3D ship models from .blend to .gltf for the new application.</li>
-                <li>Analyzed and tested the GeoEvent server for real-time data stream processing, focusing on the live recalibration of ship positions at the quay.</li>
-                <li>Audited the application's codebase to propose concrete optimizations and completely rewrote outdated technical documentation for both technical and non-technical audiences.</li>
-                <li>Collaborated cross-functionally with the SAR department to define project requirements, aesthetics, and symbology for the maritime atlas.</li>
-                <li><a href="https://Alexis-Bal.github.io/pdf/rapport_de_stage_Alexis_Balestra_HAROPA_port.pdf">Internship Report</a></li>
-                <li class="swing3d-item"><a href="https://swing3d.haropaport.com/">S-WiNG 3D</a> — interactive 3D visualisation platform of the Port of Le Havre that I worked on during my internship, featuring vessel traffic, port infrastructure, weather, waves, and navigation information.</li>
-            </ul>
-        </details>
-    </div>
-    <hr>
+    <section class="portfolio-section section--experience" id="experiences-fr" aria-labelledby="experience-fr-title">
+      <h3 id="experience-fr-title">EXPÉRIENCES PROFESSIONNELLES</h3>
+      <p class="pf-section-note">Deux expériences concrètes, de l'IA générative aux outils logiciels et données géospatiales.</p>
+      <article class="pf-feature">
+        <div class="pf-heading-row"><h4>Stage de fin d'études · IA générative &amp; qualité — ALTEN</h4><span class="pf-when">2026 · 6 mois · Toulouse</span></div>
+        <p>Participation au projet interne <strong>SMQ 2.0</strong> visant à améliorer des processus de management de la qualité par l'IA générative.</p>
+        <ul class="pf-compact-list">
+          <li><strong>Déployé</strong> l'application sur une machine virtuelle avec <strong>Docker et Azure Pipelines</strong> pour permettre son utilisation par les collaborateurs.</li>
+          <li><strong>Mis en place</strong> l'authentification avec <strong>Microsoft Authentication Library (MSAL)</strong> pour contrôler l'accès à l'application.</li>
+          <li>Contribué à une équipe de quatre personnes et présenté des travaux IA / qualité et leur avancement.</li>
+        </ul>
+        <div class="pf-tech">Environnement : IA générative · Docker · Azure Pipelines · MSAL</div>
+        <p class="pf-disclaimer">Projet interne : aucun code ni document confidentiel n'est publié.</p>
+      </article>
+      <article class="pf-feature">
+        <div class="pf-heading-row"><h4>Stage SIG &amp; automatisation — HAROPA PORT</h4><span class="pf-when">Été 2024 · 2 mois · Le Havre</span></div>
+        <p>Développement Python et traitement de données géospatiales pour des applications de gestion portuaire.</p>
+        <ul class="pf-compact-list">
+          <li>Développé et amélioré un script Python de génération et de post-traitement de tracés maritimes, avec journalisation et gestion des erreurs.</li>
+          <li>Contribué au prototype <strong>S-WiNG 3D</strong> : intégration de données SIG et conversion de <strong>76 modèles de navires</strong> de .blend vers .gltf.</li>
+          <li>Révisé la documentation technique et étudié le traitement de flux temps réel avec GeoEvent.</li>
+        </ul>
+        <div class="pf-tech">Environnement : Python · SIG · données 3D · GeoEvent</div>
+        <p><a href="{{ '/pdf/rapport_de_stage_Alexis_Balestra_HAROPA_port.pdf' | relative_url }}">Rapport de stage ↗</a> &nbsp;·&nbsp; <a href="https://swing3d.haropaport.com/">Découvrir S-WiNG 3D ↗</a></p>
+      </article>
+    </section>
 
-    <h3>EDUCATION</h3>
-    <p><strong>ERASMUS in Austria | Vienna University of Technology (TU Wien)</strong></p>
-    <ul>
-        <li><em>Fall semester 2025-2026</em></li>
-        <li>Specialized courses in Computer Science, Machine Learning, and Generative AI</li>
-        <li>Courses taught in English</li>
-    </ul>
-    <p><strong>Eurecom | Master of Science in Computer Science (Major in Data Science)</strong></p>
-    <ul>
-        <li><em>2023-2026 — All degree requirements completed; official diploma pending</em></li>
-        <li>Data Science specialization</li>
-        <li>Admitted after passing the Mines-Telecom competitive entrance exam</li>
-        <li>International engineering school specialized in computer science and AI</li>
-        <li>Courses taught in English</li>
-    </ul>
-    <p><strong>Preparatory Cycle | Lycée Louis Pasteur - Neuilly</strong></p>
-    <ul>
-        <li><em>Preparatory classes MPSI and MP (2021-2023)</em></li>
-        <li>MPSI (Mathematics, Physics, and Engineering Sciences) and MP (Mathematics and Physics) tracks</li>
-    </ul>
-    <p><strong>General Baccalauréat, Maths & Physics | Lycée militaire - Saint-Cyr l'École</strong></p>
-    <ul>
-        <li><em>2018-2021</em></li>
-        <li>Baccalauréat in Mathematics and Physics-Chemistry obtained with Highest Honors (Mention Très Bien), European English section</li>
-        <li>Participation: Kangaroo Mathematics, Concours Général (national competition) in Mathematics and Physics, Cool Canette project, School marching band</li>
-    </ul>
-    <hr>
+    <section class="portfolio-section section--projects" id="projets-fr" aria-labelledby="projets-fr-title">
+      <h3 id="projets-fr-title">PROJETS SÉLECTIONNÉS</h3>
+      <p class="pf-section-note">Une sélection orientée recrutement : le problème traité, l'approche technique, le travail réalisé et les ressources disponibles.</p>
+      <div class="pf-project-grid">
+        <article class="pf-project pf-project--wide">
+          <span class="pf-tag">LLM · Optimisation de l'inférence</span>
+          <h4>Speculative Decoding — accélération de la génération de texte</h4>
+          <p>Projet en équipe de trois : implémentation et expérimentation du décodage spéculatif avec un modèle proposant des jetons et un modèle cible. Étude d'une variante à <strong>trois modèles</strong> et comparaison de différentes configurations d'inférence.</p>
+          <div class="pf-tech">Hugging Face · LLM · Python · benchmarking</div>
+          <div class="pf-project-links"><a href="{{ '/pdf/Speculative%20decoding%20project%20report.pdf' | relative_url }}">Lire le rapport ↗</a><a href="https://github.com/Filan616/speculative-decoding">Dépôt du projet collectif ↗</a></div>
+        </article>
+        <article class="pf-project">
+          <span class="pf-tag">IA générative · RAG</span>
+          <h4>Smart Academic Assistant</h4>
+          <p>Assistant pédagogique conçu en équipe de cinq à TU Wien, pour aider les étudiants par le questionnement. Intégration d'une génération augmentée par recherche documentaire (<strong>RAG</strong>) afin d'étayer les réponses.</p>
+          <div class="pf-tech">IA générative · RAG · travail d'équipe</div>
+        </article>
+        <article class="pf-project">
+          <span class="pf-tag">ML · Détection d'anomalies</span>
+          <h4>Détection de sons anormaux industriels</h4>
+          <p>Comparaison de méthodes de détection d'anomalies pour reconnaître des sons inhabituels d'équipements industriels à partir d'enregistrements de fonctionnement normal.</p>
+          <div class="pf-tech">TensorFlow · Autoencodeurs · évaluation ML</div>
+          <div class="pf-project-links"><a href="{{ '/pdf/Anomalous_Sound_Detection_in_Industrial_Equipment.pdf' | relative_url }}">Lire le rapport ↗</a></div>
+        </article>
+        <article class="pf-project">
+          <span class="pf-tag">NLP · Deep Learning</span>
+          <h4>Analyse de sentiments sur des tweets</h4>
+          <p>Projet en binôme : classification de sentiments positifs, neutres et négatifs ; expérimentation d'approches de deep learning pour le traitement automatique du langage.</p>
+          <div class="pf-tech">PyTorch · Qwen2.5-Instruct · NLP</div>
+          <div class="pf-project-links"><a href="{{ '/pdf/Natural_Language_Processing_Sentiment_Analysis.pdf' | relative_url }}">Lire le rapport ↗</a></div>
+        </article>
+        <article class="pf-project">
+          <span class="pf-tag">Java · Backend</span>
+          <h4>Moteur de base de données simplifié</h4>
+          <p>Implémentation en Java de mécanismes internes de stockage et d'exécution de requêtes, à partir d'un squelette logiciel fourni.</p>
+          <div class="pf-tech">Java · stockage · traitement des requêtes</div>
+        </article>
+      </div>
+      <details class="pf-collapsible">
+        <summary>Voir mes autres projets et réalisations</summary>
+        <ul class="pf-compact-list">
+          <li><strong>OpenStreetMap (2024–2025)</strong> — inférence de données manquantes, en équipe de trois. <a href="{{ '/pdf/MALIS%20project%20report.pdf' | relative_url }}">Rapport ↗</a></li>
+          <li><strong>Détection de cactus (2025)</strong> — vision par ordinateur sur images aériennes, en binôme.</li>
+          <li><strong>Star Minimax Crusher (2023–2024)</strong> — dispositif Raspberry Pi jouant au morpion ultime avec suivi des mouvements. <a href="{{ '/pdf/Semester%206%20project%20report.pdf' | relative_url }}">Rapport ↗</a></li>
+          <li><strong>SafeStep (2023–2024)</strong> — prototype d'aide à l'orientation pour personnes malvoyantes. <a href="{{ '/pdf/Semester%205%20project%20report.pdf' | relative_url }}">Rapport ↗</a></li>
+          <li><strong>BasicOS (2023)</strong> — développement de la partie serveur d'une application client-serveur.</li>
+          <li><strong>Simulation d'entreprise (2025)</strong> — décisions stratégiques en équipe de quatre. <a href="{{ '/pdf/ShareholderPresentation_OnYX_Team2_Business.pdf' | relative_url }}">Présentation ↗</a></li>
+          <li><strong>Cool Canette (2021)</strong> — projet de physique récompensé aux Olympiades de physique et au concours Cgénial. <a href="{{ '/pdf/cool_canette.pdf' | relative_url }}">Rapport ↗</a></li>
+        </ul>
+      </details>
+    </section>
 
-    <h3>PROJECTS</h3>
-  
-    <p><strong>Smart Academic Assistant Project (2025-2026)</strong></p>
-    <ul>
-        <li>Project carried out in a team of 5 for the generative AI course of the Technical University of Vienna, consisting of creating an academic assistant to help students.</li>
-    </ul>
-    <p><strong>Simplified Database Engine in Java (2025)</strong></p>
-    <ul>
-        <li>Developed storage and query mechanisms.</li>
-        <li>Implemented the internal logic from a provided skeleton.</li>
-    </ul>
-    <p><strong>Speculative Decoding Project (2025)</strong></p>
-    <ul>
-        <li>Team implementation (3 members) of the speculative sampling technique, used to reduce the inference costs of conversational AI by using two models of different sizes.</li>
-        <li>We conducted several experiments on this technique and implemented and tested a version of speculative sampling with three models instead of two.</li>
-        <li><a href="https://Alexis-Bal.github.io/pdf/Speculative%20decoding%20project%20report.pdf">Project Report</a></li>
-    </ul>
-    <p><strong>Business Simulation (2025)</strong></p>
-    <ul>
-        <li>Participated in an economic simulation, in a 4-person business simulation competing against other companies for one semester.</li>
-        <li><a href="https://Alexis-Bal.github.io/pdf/ShareholderPresentation_OnYX_Team2_Business.pdf">Shareholder Presentation</a></li>
-    </ul>
-    <p><strong>OpenStreetMap Database Project (2024-2025)</strong></p>
-    <ul>
-        <li>Team implementation (3 members) of an algorithm to infer missing data in the OpenStreetMap database.</li>
-        <li><a href="https://Alexis-Bal.github.io/pdf/MALIS%20project%20report.pdf">Project Report</a></li>
-    </ul>
-    <p><strong>Anomalous Sound Detection in Industrial Equipment (2025)</strong></p>
-    <ul>
-        <li>Challenge realised in a team of 2 during the Algorithmic Machine Learning course about training a model on the sound of normal industrial equipment to classify whether a sound is normal or anomalous.</li>
-        <li><a href="https://alexis-bal.github.io/pdf/Anomalous_Sound_Detection_in_Industrial_Equipment.pdf">Project Report</a></li>
-    </ul>
-    <p><strong>Natural Language Processing Sentiment Analysis (2025)</strong></p>
-    <ul>
-        <li>Challenge realised in a team of 2 during the Algorithmic Machine Learning course about training a model to distinguish whether tweets have positive, neutral or negative sentiments.</li>
-        <li><a href="https://alexis-bal.github.io/pdf/Natural_Language_Processing_Sentiment_Analysis.pdf">Project Report</a></li>
-    </ul>
-    <p><strong>Cactus Detection in Aerial Images (2025)</strong></p>
-    <ul>
-        <li>Challenge completed in a team of 2 during the Algorithmic Machine Learning course, consisting of training a deep learning computer vision model to identify a specific type of cactus in aerial images.</li>
-    </ul>
-    <p><strong>Semester 6 Project: Star Minimax Crusher (2023-2024)</strong></p>
-    <ul>
-        <li>Development (team of 4) of a Raspberry Pi device to play ultimate tic-tac-toe against an AI using a motion tracker, including the ability to have our device play against other teams' devices.</li>
-        <li><a href="https://Alexis-Bal.github.io/pdf/Semester%206%20project%20report.pdf">Project Report</a></li>
-    </ul>
-    <p><strong>Semester 5 Project: SafeStep (2023-2024)</strong></p>
-    <ul>
-        <li>Development (team of 6) of a device to help the visually impaired navigate.</li>
-        <li><a href="https://Alexis-Bal.github.io/pdf/Semester%205%20project%20report.pdf">Project Report</a></li>
-    </ul>
-    <p><strong>BasicOS Project (2023)</strong></p>
-    <ul>
-        <li>Development (team of 4) of an application connecting a server and a client.</li>
-        <li>I worked on the server-side of the application.</li>
-    </ul>
-    <p><strong>Cool Canette Project (2021)</strong></p>
-    <ul>
-        <li>Physics project carried out at the Saint-Cyr military high school, which won first prize at the XXVIIIth national Physics Olympiad competition and the EDF prize at the Cgénial competition in 2021.</li>
-        <li><a href="https://alexis-bal.github.io/pdf/cool_canette.pdf">Project Report</a></li>
-    </ul>
-</div>
+    <section class="portfolio-section section--skills" id="competences-fr" aria-labelledby="competences-fr-title">
+      <h3 id="competences-fr-title">COMPÉTENCES</h3>
+      <div class="pf-skills-grid">
+        <div class="pf-minicard"><h4>Programmation &amp; données</h4><p>Python · SQL · Java (projets) · traitement de données · automatisation</p></div>
+        <div class="pf-minicard"><h4>Machine Learning &amp; IA</h4><p>PyTorch · TensorFlow · scikit-learn · Hugging Face · NLP · vision par ordinateur · RAG</p></div>
+        <div class="pf-minicard"><h4>Déploiement &amp; intégration</h4><p>Docker · Azure Pipelines · Microsoft MSAL · applications déployées sur VM</p></div>
+        <div class="pf-minicard"><h4>Langues</h4><p>Français : langue maternelle · Anglais : C1 (TOEIC 950) · Allemand : A2</p></div>
+      </div>
+    </section>
 
-<!-- FRENCH SECTION -->
-<div class="lang fr">
-    <h3>COORDONNÉES</h3>
-    <ul>
-        <li><strong>Phone:</strong> +33 6 41 47 94 65</li>
-        <li><strong>Email:</strong> alexis.balestra@eurecom.fr</li>
-        <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/alexis-balestra-70a957295/">https://www.linkedin.com/in/alexis-balestra-70a957295/</a></li>
-        <li><strong>GitHub:</strong> <a href="https://github.com/Alexis-Bal">https://github.com/Alexis-Bal</a></li>
-    </ul>
-    <hr>
-    <h3>PROFIL</h3>
-    <p>Après deux ans de classe préparatoire au lycée Louis Pasteur (filières MPSI et MP), j’ai terminé mon cursus à EURECOM en vue de l’obtention du <strong>Diplôme d’Ingénieur (Grade de Master)</strong>, avec une spécialisation en informatique, Data Science et IA. J’ai validé l’ensemble des enseignements et stages nécessaires à l’obtention de mon diplôme, notamment mon stage de fin d’études de six mois chez ALTEN à Toulouse ; je suis désormais dans l’attente de la délivrance officielle du diplôme. J’ai également effectué un semestre Erasmus à TU Wien en Autriche.</p>
-    <hr>
-    <h3>OBJECTIF</h3>
-    <p>Je recherche actuellement <strong>mon premier poste à temps plein</strong>, où je pourrai mettre à profit ma formation en informatique et en intelligence artificielle</p>
-    <hr>
+    <section class="portfolio-section section--education" id="formation-fr" aria-labelledby="formation-fr-title">
+      <h3 id="formation-fr-title">FORMATION</h3>
+      <div class="pf-education-item"><div class="pf-heading-row"><h4>EURECOM — cursus ingénieur, spécialisation Data Science</h4><span class="pf-when">2023–2026</span></div><p>Apprentissage automatique, deep learning, statistiques, bases de données, systèmes distribués et cloud. Enseignements en anglais.</p><p class="pf-disclaimer">Enseignements et stages validés ; diplôme d'ingénieur en attente de délivrance officielle.</p></div>
+      <div class="pf-education-item"><div class="pf-heading-row"><h4>TU Wien — semestre Erasmus</h4><span class="pf-when">Automne 2025</span></div><p>IA générative, NLP, extraction d'information et informatique durable. Cours en anglais.</p></div>
+      <div class="pf-education-item"><div class="pf-heading-row"><h4>Lycée Louis Pasteur — classes préparatoires MPSI / MP</h4><span class="pf-when">2021–2023</span></div><p>Formation approfondie en mathématiques et physique ; concours Mines-Télécom.</p></div>
+    </section>
 
-    <h3>COMPÉTENCES</h3>
-    <p><strong>Langues</strong></p>
-    <ul>
-        <li><strong>Anglais:</strong> Courant niveau C1 (Section européenne anglais, Cambridge english certificate, 950 points au Toeic)</li>
-        <li><strong>Allemand:</strong> Niveau A2</li>
-    </ul>
-    <p><strong>Langages de programmation</strong></p>
-    <ul>
-        <li>Python</li>
-        <li>SQL</li>
-    </ul>
-    <hr>
-    <h3>EXPÉRIENCES PROFESSIONNELLES</h3>
+    <section class="portfolio-section section--contact" id="contact-fr" aria-labelledby="contact-fr-title">
+      <h3 id="contact-fr-title">CONTACT</h3>
+      <p>Une opportunité en IA appliquée, développement Python ou ingénierie Data ? Discutons de votre projet.</p>
+      <div class="pf-contact-grid">
+        <div class="pf-contact-item"><small>E-mail</small><a href="mailto:alexis.balestra@eurecom.fr">alexis.balestra@eurecom.fr</a></div>
+        <div class="pf-contact-item"><small>Téléphone</small><a href="tel:+33641479465">+33 6 41 47 94 65</a></div>
+        <div class="pf-contact-item"><small>LinkedIn</small><a href="https://www.linkedin.com/in/alexis-balestra-70a957295/">Voir mon profil ↗</a></div>
+        <div class="pf-contact-item"><small>GitHub</small><a href="https://github.com/Alexis-Bal">Voir mes dépôts ↗</a></div>
+      </div>
+    </section>
+  </div>
 
-    <div class="experience-item">
-        <p><strong>Stagiaire IA et Qualité | ALTEN (6 mois – stage de fin d’études – 2026)</strong></p>
-        <p>Travail sur SMQ 2.0, une initiative utilisant l’IA générative pour transformer et améliorer les processus de management de la qualité.</p>
-        <details class="experience-details">
-            <summary>
-                <span class="closed-label">En savoir plus</span>
-                <span class="open-label">Réduire</span>
-            </summary>
-            <ul>
-                <li>Reprise du projet SMQ 2.0, utilisant l’IA générative pour transformer et améliorer les processus de management de la qualité.</li>
-                <li>Collaboration au sein d’une équipe de quatre personnes sur différents sujets liés à l’IA et à la qualité, avec présentation de l’avancement et des résultats aux autres membres de l’équipe, renforçant mes compétences en communication et en leadership.</li>
-                <li>Déploiement de l’application SMQ 2.0 sur une machine virtuelle à l’aide d’Azure Pipelines et de Docker, afin de rendre la solution accessible aux collaborateurs d’ALTEN.</li>
-                <li>Mise en place d’un système d’authentification sécurisé avec la Microsoft Authentication Library (MSAL) pour protéger l’accès à l’application SMQ 2.0.</li>
-            </ul>
-        </details>
+  <!-- Full English copy; deliberately parallel structure for a consistent experience. -->
+  <div class="lang en" lang="en" data-portfolio-enhanced="true">
+    <div class="pf-hero" id="home-en">
+      <span class="pf-eyebrow">Applied AI · Machine Learning · Python Engineering</span>
+      <h1>Building models, developing AI applications, shipping working software.</h1>
+      <p>I'm <strong>Alexis Balestra</strong>, an EURECOM engineering-programme student who has completed the Data Science curriculum. At <strong>ALTEN</strong>, I worked on deploying and securing a generative AI application. My projects cover NLP, large language models and applied machine learning.</p>
+      <div class="pf-chips" aria-label="Technical focus">
+        <span class="pf-chip">Python</span><span class="pf-chip">Machine Learning</span><span class="pf-chip">LLMs / NLP</span><span class="pf-chip">Docker &amp; Azure Pipelines</span>
+      </div>
+      <div class="pf-actions">
+        <a class="pf-button pf-button--primary" href="mailto:alexis.balestra@eurecom.fr?subject=AI%20engineering%20opportunity%20-%20Alexis%20Balestra">Get in touch ↗</a>
+        <a class="pf-button pf-button--outline" href="{{ '/pdf/Alexis_Balestra_CV_AI_ML_Engineer.pdf' | relative_url }}">AI / ML résumé (FR PDF) ↓</a>
+        <a class="pf-button pf-button--outline" href="{{ '/pdf/Alexis_Balestra_CV_Python_Data_AI_Engineer.pdf' | relative_url }}">Python / Data résumé (FR PDF) ↓</a>
+      </div>
+      <p class="pf-small">Seeking my first full-time role in AI/ML Engineering, Python development or Data &amp; AI · Open to relocating across France · Coursework and internships completed in 2026; official engineering diploma pending issuance.</p>
     </div>
 
-    <div class="experience-item">
-        <p><strong>Stage de découverte du monde professionnel | HAROPA PORT (2 mois – été 2024)</strong></p>
-        <p>Travail au sein du service SIG (Systèmes d’Information Géographique) sur l’automatisation Python, les données géospatiales et des applications 3D de gestion portuaire.</p>
-        <details class="experience-details">
-            <summary>
-                <span class="closed-label">En savoir plus</span>
-                <span class="open-label">Réduire</span>
-            </summary>
-            <ul>
-                <li>Développement et optimisation d’un script Python central permettant de générer et de post-traiter les lignes maritimes (Atlas LMR), avec une amélioration significative de sa stabilité, de sa rapidité et de sa maintenabilité grâce à la mise en place d’une gestion robuste des erreurs et d’un système de logs.</li>
-                <li>Contribution au projet POC phare S-WiNG 3D, visant à moderniser l’application 2D de gestion du port en un environnement virtuel 3D destiné à la capitainerie.</li>
-                <li>Création d’une nouvelle scène virtuelle 3D par l’intégration de jeux de données géospatiales complexes, notamment des ponts, écluses et données SIG, ainsi que conversion de 76 modèles 3D de navires uniques du format .blend vers .gltf pour la nouvelle application.</li>
-                <li>Analyse et test du serveur GeoEvent pour le traitement de flux de données en temps réel, avec un focus sur le recalage en direct de la position des navires à quai.</li>
-                <li>Audit du code de l’application afin de proposer des optimisations concrètes, ainsi que réécriture complète d’une documentation technique devenue obsolète pour des publics techniques et non techniques.</li>
-                <li>Collaboration transverse avec le service SAR afin de définir les besoins du projet, l’esthétique et la symbologie de l’atlas maritime.</li>
-                <li><a href="https://Alexis-Bal.github.io/pdf/rapport_de_stage_Alexis_Balestra_HAROPA_port.pdf">Rapport de stage</a></li>
-                <li class="swing3d-item"><a href="https://swing3d.haropaport.com/">S-WiNG 3D</a> — plateforme interactive de visualisation 3D du port du Havre sur laquelle j’ai travaillé pendant mon stage, présentant le trafic des navires, les infrastructures portuaires, la météo, les vagues et les informations de navigation.</li>
-            </ul>
-        </details>
-    </div>
-    <hr>
+    <section class="portfolio-section section--experience" id="experience-en" aria-labelledby="experience-en-title">
+      <h3 id="experience-en-title">PROFESSIONAL EXPERIENCE</h3>
+      <p class="pf-section-note">Hands-on experience across generative AI, software deployment and geospatial data.</p>
+      <article class="pf-feature">
+        <div class="pf-heading-row"><h4>Final-year internship · Generative AI &amp; quality — ALTEN</h4><span class="pf-when">2026 · 6 months · Toulouse</span></div>
+        <p>Contributed to <strong>SMQ 2.0</strong>, an internal generative AI initiative supporting quality-management processes.</p>
+        <ul class="pf-compact-list">
+          <li><strong>Deployed</strong> the application on a virtual machine using <strong>Docker and Azure Pipelines</strong>, making it accessible to employees.</li>
+          <li><strong>Implemented</strong> authentication with <strong>Microsoft Authentication Library (MSAL)</strong> to control access to the application.</li>
+          <li>Contributed to a four-person team and presented AI and quality-related work and project progress.</li>
+        </ul>
+        <div class="pf-tech">Stack: Generative AI · Docker · Azure Pipelines · MSAL</div>
+        <p class="pf-disclaimer">Internal project: no confidential code or documents are published.</p>
+      </article>
+      <article class="pf-feature">
+        <div class="pf-heading-row"><h4>GIS &amp; automation internship — HAROPA PORT</h4><span class="pf-when">Summer 2024 · 2 months · Le Havre</span></div>
+        <p>Python development and geospatial-data processing for port-management applications.</p>
+        <ul class="pf-compact-list">
+          <li>Developed and improved a Python script for generating and post-processing maritime routes, including logging and error handling.</li>
+          <li>Contributed to the <strong>S-WiNG 3D</strong> prototype by integrating GIS datasets and converting <strong>76 ship models</strong> from .blend to .gltf.</li>
+          <li>Reworked technical documentation and explored real-time data processing using GeoEvent.</li>
+        </ul>
+        <div class="pf-tech">Stack: Python · GIS · 3D data · GeoEvent</div>
+        <p><a href="{{ '/pdf/rapport_de_stage_Alexis_Balestra_HAROPA_port.pdf' | relative_url }}">Internship report ↗</a> &nbsp;·&nbsp; <a href="https://swing3d.haropaport.com/">Explore S-WiNG 3D ↗</a></p>
+      </article>
+    </section>
 
-    <h3>ÉDUCATION</h3>
-    <p><strong>ERASMUS en Autriche | Université Technique de Vienne</strong></p>
-    <ul>
-        <li><em>Semestre d’automne 2025-2026</em></li>
-        <li>Cours spécialisés en computer science, machine learning et IA générative</li>
-        <li>Cours dispensés en Anglais</li>
-    </ul>
-    <p><strong>EURECOM - Diplôme d'Ingénieur (Équivalent Master 2)</strong></p>
-    <ul>
-        <li><em>2023-2026 — Toutes les exigences du diplôme validées ; diplôme officiel en attente de délivrance</em></li>
-        <li>Cursus Data Science</li>
-        <li>Intégration après réussite au concours Mines Telecom</li>
-        <li>Ecole d'ingénieur spécialisée dans l'informatique et l'IA à caractère international</li>
-        <li>Cours dispensés en Anglais</li>
-    </ul>
-    <p><strong>Cycle Préparatoire | Lycée Louis Pasteur - Neuilly</strong></p>
-    <ul>
-        <li><em>Classe préparatoire MPSI et MP (2021-2023)</em></li>
-        <li>Filière MPSI (Mathématiques Physique et Science de l'Ingénieur) et MP (Mathématiques Physiques)</li>
-    </ul>
-    <p><strong>Lycée voie générale Maths Physiques | Lycée militaire - Saint-Cyr l'École</strong></p>
-    <ul>
-        <li><em>2018-2021</em></li>
-        <li>Baccalauréat Mathématiques Physique-chimie obtenu avec mention Très Bien section européenne anglais</li>
-        <li>Participation: Kangourou des Mathématiques, Concours général de mathématiques et de physique, Projet Cool canette, Fanfare du lycée</li>
-    </ul>
-    <hr>
+    <section class="portfolio-section section--projects" id="projects-en" aria-labelledby="projects-en-title">
+      <h3 id="projects-en-title">SELECTED PROJECTS</h3>
+      <p class="pf-section-note">Selected for relevance to AI engineering roles: technical challenge, approach, contribution and evidence.</p>
+      <div class="pf-project-grid">
+        <article class="pf-project pf-project--wide">
+          <span class="pf-tag">LLMs · Inference optimisation</span>
+          <h4>Speculative Decoding — faster text generation</h4>
+          <p>Three-person team project implementing and experimenting with speculative decoding, using a draft model and a target model. Explored a <strong>three-model variant</strong> and compared different inference configurations.</p>
+          <div class="pf-tech">Hugging Face · LLMs · Python · benchmarking</div>
+          <div class="pf-project-links"><a href="{{ '/pdf/Speculative%20decoding%20project%20report.pdf' | relative_url }}">Read the report ↗</a><a href="https://github.com/Filan616/speculative-decoding">Collaborative project repository ↗</a></div>
+        </article>
+        <article class="pf-project">
+          <span class="pf-tag">Generative AI · RAG</span>
+          <h4>Smart Academic Assistant</h4>
+          <p>Academic tutoring assistant built by a five-person team at TU Wien. Designed to help students through guided questions, using <strong>retrieval-augmented generation (RAG)</strong> to ground answers in documents.</p>
+          <div class="pf-tech">Generative AI · RAG · team development</div>
+        </article>
+        <article class="pf-project">
+          <span class="pf-tag">ML · Anomaly detection</span>
+          <h4>Industrial anomalous sound detection</h4>
+          <p>Compared anomaly-detection approaches for identifying unusual sounds from industrial equipment using recordings of normal operation.</p>
+          <div class="pf-tech">TensorFlow · Autoencoders · ML evaluation</div>
+          <div class="pf-project-links"><a href="{{ '/pdf/Anomalous_Sound_Detection_in_Industrial_Equipment.pdf' | relative_url }}">Read the report ↗</a></div>
+        </article>
+        <article class="pf-project">
+          <span class="pf-tag">NLP · Deep Learning</span>
+          <h4>Tweet sentiment analysis</h4>
+          <p>Pair project classifying positive, neutral and negative sentiment in tweets; explored deep-learning approaches to natural language processing.</p>
+          <div class="pf-tech">PyTorch · Qwen2.5-Instruct · NLP</div>
+          <div class="pf-project-links"><a href="{{ '/pdf/Natural_Language_Processing_Sentiment_Analysis.pdf' | relative_url }}">Read the report ↗</a></div>
+        </article>
+        <article class="pf-project">
+          <span class="pf-tag">Java · Backend</span>
+          <h4>Simplified database engine</h4>
+          <p>Implemented internal storage and query-processing logic in Java, starting from a provided code skeleton.</p>
+          <div class="pf-tech">Java · storage · query execution</div>
+        </article>
+      </div>
+      <details class="pf-collapsible">
+        <summary>Explore more projects and achievements</summary>
+        <ul class="pf-compact-list">
+          <li><strong>OpenStreetMap (2024–2025)</strong> — inferred missing map data in a three-person team. <a href="{{ '/pdf/MALIS%20project%20report.pdf' | relative_url }}">Report ↗</a></li>
+          <li><strong>Cactus detection (2025)</strong> — computer vision on aerial imagery, in a two-person team.</li>
+          <li><strong>Star Minimax Crusher (2023–2024)</strong> — Raspberry Pi device playing ultimate tic-tac-toe with motion tracking. <a href="{{ '/pdf/Semester%206%20project%20report.pdf' | relative_url }}">Report ↗</a></li>
+          <li><strong>SafeStep (2023–2024)</strong> — navigation-assistance prototype for visually impaired people. <a href="{{ '/pdf/Semester%205%20project%20report.pdf' | relative_url }}">Report ↗</a></li>
+          <li><strong>BasicOS (2023)</strong> — server-side development for a client–server application.</li>
+          <li><strong>Business simulation (2025)</strong> — team-based strategic decision-making. <a href="{{ '/pdf/ShareholderPresentation_OnYX_Team2_Business.pdf' | relative_url }}">Presentation ↗</a></li>
+          <li><strong>Cool Canette (2021)</strong> — physics project awarded prizes at the French Physics Olympiad and Cgénial competition. <a href="{{ '/pdf/cool_canette.pdf' | relative_url }}">Report ↗</a></li>
+        </ul>
+      </details>
+    </section>
 
-    <h3>PROJETS</h3>
+    <section class="portfolio-section section--skills" id="skills-en" aria-labelledby="skills-en-title">
+      <h3 id="skills-en-title">TECHNICAL SKILLS</h3>
+      <div class="pf-skills-grid">
+        <div class="pf-minicard"><h4>Programming &amp; data</h4><p>Python · SQL · Java (course projects) · data processing · automation</p></div>
+        <div class="pf-minicard"><h4>Machine Learning &amp; AI</h4><p>PyTorch · TensorFlow · scikit-learn · Hugging Face · NLP · computer vision · RAG</p></div>
+        <div class="pf-minicard"><h4>Deployment &amp; integration</h4><p>Docker · Azure Pipelines · Microsoft MSAL · VM deployment</p></div>
+        <div class="pf-minicard"><h4>Languages</h4><p>French: native · English: C1 (TOEIC 950) · German: A2</p></div>
+      </div>
+    </section>
 
-    <p><strong>Projet Smart Academic Assistant (2025-2026)</strong></p>
-    <ul>
-        <li>Projet réalisé en équipe de 5 pour le cours d'IA générative de l'Université technique de Vienne, consistant à créer un assistant académique pour aider les étudiants.</li>
-    </ul>
-    <p><strong>Implémentation d’un moteur de base de données simplifié en Java (2025)</strong></p>
-    <ul>
-        <li>Développement des mécanismes de stockage et de requêtes.</li>
-        <li>Implémentation de la logique interne à partir d’un squelette imposé.</li>
-    </ul>
-    <p><strong>Projet Speculative Decoding (2025)</strong></p>
-    <ul>
-        <li>Implémentation en équipe de 3 de la technique de speculative sampling, permettant de diminuer les coûts d'inférence des IA conversationnelles en utilisant deux modèles de tailles différentes.</li>
-        <li>Nous avons effectué un certain nombre d'expériences sur cette technique et avons implémenté et testé une version du speculative sampling avec trois modèles plutôt que deux.</li>
-        <li><a href="https://Alexis-Bal.github.io/pdf/Speculative%20decoding%20project%20report.pdf">Rapport de projet</a></li>
-    </ul>
-    <p><strong>Simulation d'entreprise (2025)</strong></p>
-    <ul>
-        <li>Participation à une simulation économique, dans une simulation d'entreprise de 4 personnes en compétition avec d'autres entreprises pendant un semestre.</li>
-        <li><a href="https://Alexis-Bal.github.io/pdf/ShareholderPresentation_OnYX_Team2_Business.pdf">Présentation pour les shareholders</a></li>
-    </ul>
-    <p><strong>Projet open street map database (2024-2025)</strong></p>
-    <ul>
-        <li>Implémentation en équipe de 3 d'un algorithme permettant d'inférer les données manquantes dans la database open street map.</li>
-        <li><a href="https://Alexis-Bal.github.io/pdf/MALIS%20project%20report.pdf">Rapport de projet</a></li>
-    </ul>
-    <p><strong>Détection de sons anormaux dans les équipements industriels (2025)</strong></p>
-    <ul>
-        <li>Challenge réalisé en équipe de 2 durant le cours d'Algorithmic Machine Learning consistant à entraîner un modèle sur le son d'équipements industriels normaux pour classer si un son est normal ou anormal.</li>
-        <li><a href="https://alexis-bal.github.io/pdf/Anomalous_Sound_Detection_in_Industrial_Equipment.pdf">Rapport de projet</a></li>
-    </ul>
-    <p><strong>Analyse de sentiment en traitement du langage naturel (2025)</strong></p>
-    <ul>
-        <li>Challenge réalisé en équipe de 2 durant le cours d'Algorithmic Machine Learning consistant à entraîner un modèle pour distinguer si des tweets ont des sentiments positifs, neutres ou négatifs.</li>
-        <li><a href="https://alexis-bal.github.io/pdf/Natural_Language_Processing_Sentiment_Analysis.pdf">Rapport de projet</a></li>
-    </ul>
-    <p><strong>Détection de cactus sur des images aériennes(2025)</strong></p>
-    <ul>
-        <li>Challenge réalisé en équipe de 2 durant le cours d'Algorithmic Machine Learning consistant à entraîner un modèle de deep learning appliqué à la computer vision pour repérer un type spécifique de cactus dans des images aériennes.</li>
-    </ul>
-    <p><strong>Projet de semestre 6: Star Minimax Crusher (2023-2024)</strong></p>
-    <ul>
-        <li>Réalisation en équipe de 4 d'un dispositif sur Raspberry Pi permettant de jouer au morpion ultime contre une IA en utilisant un traqueur de mouvements, ainsi que la possibilité de faire jouer notre dispositif contre ceux des autres équipes.</li>
-        <li><a href="https://Alexis-Bal.github.io/pdf/Semester%206%20project%20report.pdf">Rapport de projet</a></li>
-    </ul>
-    <p><strong>Projet de semestre 5: SafeStep (2023-2024)</strong></p>
-    <ul>
-        <li>Réalisation en équipe de 6 d'un dispositif pour aider les malvoyants à s'orienter.</li>
-        <li><a href="https://Alexis-Bal.github.io/pdf/Semester%205%20project%20report.pdf">Rapport de projet</a></li>
-    </ul>
-    <p><strong>Projet BasicOS (2023)</strong></p>
-    <ul>
-        <li>Réalisation en équipe de 4 d'une application reliant un serveur et un client.</li>
-        <li>J'ai travaillé sur la partie serveur de l'application.</li>
-    </ul>
-    <p><strong>Projet Cool Canette (2021)</strong></p>
-    <ul>
-        <li>Projet de physique réalisé au lycée militaire de Saint-Cyr ayant remporté un premier prix au XXVIIIème concours national des Olympiades de physique ainsi que le prix EDF au concours Cgénial en 2021.</li>
-        <li><a href="https://alexis-bal.github.io/pdf/cool_canette.pdf">Rapport de projet</a></li>
-    </ul>
+    <section class="portfolio-section section--education" id="education-en" aria-labelledby="education-en-title">
+      <h3 id="education-en-title">EDUCATION</h3>
+      <div class="pf-education-item"><div class="pf-heading-row"><h4>EURECOM — engineering programme, Data Science specialisation</h4><span class="pf-when">2023–2026</span></div><p>Machine learning, deep learning, statistics, databases, distributed systems and cloud computing. Courses taught in English.</p><p class="pf-disclaimer">All coursework and internships completed; official engineering diploma pending issuance.</p></div>
+      <div class="pf-education-item"><div class="pf-heading-row"><h4>TU Wien — Erasmus semester</h4><span class="pf-when">Autumn 2025</span></div><p>Generative AI, NLP, information extraction and sustainable computing. Courses in English.</p></div>
+      <div class="pf-education-item"><div class="pf-heading-row"><h4>Lycée Louis Pasteur — MPSI / MP preparatory classes</h4><span class="pf-when">2021–2023</span></div><p>Intensive mathematics and physics programme; Mines-Télécom entrance examination.</p></div>
+    </section>
+
+    <section class="portfolio-section section--contact" id="contact-en" aria-labelledby="contact-en-title">
+      <h3 id="contact-en-title">CONTACT</h3>
+      <p>Working on applied AI, Python software or Data &amp; AI engineering? I'd be glad to hear about your project.</p>
+      <div class="pf-contact-grid">
+        <div class="pf-contact-item"><small>Email</small><a href="mailto:alexis.balestra@eurecom.fr">alexis.balestra@eurecom.fr</a></div>
+        <div class="pf-contact-item"><small>Phone</small><a href="tel:+33641479465">+33 6 41 47 94 65</a></div>
+        <div class="pf-contact-item"><small>LinkedIn</small><a href="https://www.linkedin.com/in/alexis-balestra-70a957295/">View profile ↗</a></div>
+        <div class="pf-contact-item"><small>GitHub</small><a href="https://github.com/Alexis-Bal">View repositories ↗</a></div>
+      </div>
+    </section>
+  </div>
 </div>
-</div>
+
+<script>
+// Set French as the default for new visitors; respect a previously chosen language.
+try { if (!localStorage.getItem('preferredLang')) localStorage.setItem('preferredLang', 'fr'); } catch (error) { /* Private browsing can block storage. */ }
+// The existing /assets/js/portfolio.js sets a "student" subtitle. Keep it up to date
+// without needing to change a second file in the repository.
+window.addEventListener('load', function () {
+  document.querySelectorAll('.wrapper > header p[data-portfolio-subtitle] .lang.en').forEach(function (element) {
+    element.textContent = 'AI / ML ENGINEERING';
+  });
+  document.querySelectorAll('.wrapper > header p[data-portfolio-subtitle] .lang.fr').forEach(function (element) {
+    element.textContent = 'INGÉNIERIE IA / ML';
+  });
+});
+</script>
